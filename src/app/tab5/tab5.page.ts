@@ -1,15 +1,65 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CarritoCompraService } from '../servicios-backend/carrito-compra/carrito-compra.service';
 
 @Component({
   selector: 'app-tab5',
   templateUrl: './tab5.page.html',
   styleUrls: ['./tab5.page.scss'],
 })
-export class Tab5Page implements OnInit {
+export class Tab5Page {
 
-  constructor() { }
+  public listCarritoCompra = [];
+  public IdCarritoCompra = ""
+  public IdUsuario = ""
+  public swGuardarCambios = false
 
-  ngOnInit() {
+  constructor(private carritocompraService: CarritoCompraService) { 
+    this.GetCarritoCompra();
   }
+
+    public GetCarritoCompra(){
+      this.carritocompraService.GetCarritoCompra().subscribe({
+          next: (response: HttpResponse<any>) => {
+              this.listCarritoCompra = response.body;
+              //console.log(this.listCarritoCompra)
+          },
+          error: (error: any) => {
+              console.log(error);
+          },
+          complete: () => {
+              console.log('complete - this.GetCarritoCompra()');
+          },
+      });
+    }
+  
+    public addCarritoCompra(){
+      if (this.IdCarritoCompra.length > 0 && this.IdUsuario.length > 0) {
+        var entidad = {
+            IdCarritoCompra : this.IdCarritoCompra,
+            IdUsuario: this.IdUsuario
+        }
+        console.log(entidad)
+        this.carritocompraService.AddCarritoCompra(entidad).subscribe({
+            next: (response: HttpResponse<any>) => {
+                console.log(response.body)//1
+                if(response.body == 1){
+                    alert("Se agrego el HProducto con exito :)");
+                    this.GetCarritoCompra();//Se actualize el listado
+                    this.IdUsuario = "";
+                }else{
+                    alert("Al agregar el Carrito Compra fallo exito :(");
+                }
+            },
+            error: (error: any) => {
+                console.log(error);
+            },
+            complete: () => {
+                console.log('complete - this.addHProducto()');
+            },
+        });
+    }
+  }
+  
 
 }
