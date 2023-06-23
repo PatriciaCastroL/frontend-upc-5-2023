@@ -17,8 +17,7 @@
   <div padding>
       <ion-list>
           <ion-item *ngFor="let item of listProducto">
-              {{item.nombre}}
-              ({{item.categoria.nombre}})
+              {{item.nombre}}, {{item.idCategoria}}
               <div class="item-note" slot="end">
                   <ion-button color="warning" (click)="updateProducto(item)">Editar</ion-button>
                   <ion-button color="danger" (click)="deleteProducto(item)">Eliminar</ion-button>

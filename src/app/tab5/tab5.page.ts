@@ -10,7 +10,6 @@ import { CarritoCompraService } from '../servicios-backend/carrito-compra/carrit
 export class Tab5Page {
 
   public listCarritoCompra = [];
-  public IdCarritoCompra = ""
   public IdUsuario = ""
   public swGuardarCambios = false
 
@@ -34,9 +33,8 @@ export class Tab5Page {
     }
   
     public addCarritoCompra(){
-      if (this.IdCarritoCompra.length > 0 && this.IdUsuario.length > 0) {
+      if (this.IdUsuario.length > 0) {
         var entidad = {
-            IdCarritoCompra : this.IdCarritoCompra,
             IdUsuario: this.IdUsuario
         }
         console.log(entidad)

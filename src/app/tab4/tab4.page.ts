@@ -10,7 +10,7 @@ import { HttpResponse } from '@angular/common/http';
 export class Tab4Page {
 
   public listHProducto = [];
-  public idHProducto = ""
+
   public cantidad = ""
   public idProducto = ""
   public idCarritoCompra = ""
@@ -36,10 +36,11 @@ export class Tab4Page {
   }
 
   public addHProducto(){
-    if (this.cantidad.length > 0 && this.idHProducto.length > 0) {
+    if (this.cantidad.length > 0 && this.idProducto.length > 0 && this.idCarritoCompra.length > 0) {
       var entidad = {
           cantidad : this.cantidad,
-          idHProducto: this.idHProducto
+          idProducto : this.idProducto,
+          idCarritoCompra : this.idCarritoCompra
       }
       console.log(entidad)
       this.hproductoService.AddHProducto(entidad).subscribe({
@@ -49,7 +50,9 @@ export class Tab4Page {
                   alert("Se agrego el HProducto con exito :)");
                   this.GetHProducto();//Se actualize el listado
                   this.cantidad = "";
-                  this.idHProducto = "";
+                  this.idProducto = "";
+                  this.idCarritoCompra = "";
+
               }else{
                   alert("Al agregar el HProducto fallo exito :(");
               }
