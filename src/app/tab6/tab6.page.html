@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      CRUD Paciente
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input id="idPaciente" type="text" hidden [(ngModel)]="idPaciente"></ion-input>
+    <ion-input id="nombrecompleto" type="text" placeholder="Ingrese Paciente" [(ngModel)]="nombrecompleto"></ion-input>
+    <ion-input id="cedulaidentidad" type="text" placeholder="Ingrese CI" [(ngModel)]="cedulaidentidad"></ion-input>
+    <ion-input id="celular" type="text" placeholder="Ingrese Celular" [(ngModel)]="celular"></ion-input>
+
+    <div class="item-note" item-end>
+        <ion-button id="agregarPaciente" *ngIf="!swGuardarCambios" (click)="addPaciente()">Agregar Paciente</ion-button>
+        <ion-button id="guardarCambios" *ngIf="swGuardarCambios" color="warning" (click)="guardarCambios()">Guardar Cambios</ion-button>
+    </div>
+</ion-item>
+<div padding>
+    <ion-list>
+        <ion-item *ngFor="let item of listPaciente">
+            ID: {{item.id}} - Nombre: {{item.nombreCompleto}} - CI: {{item.cedulaIdentidad}} - cel: {{item.celular}}
+            <div class="item-note" slot="end">
+                <ion-button id="updatePaciente" color="warning" (click)="updatePaciente(item)">Editar</ion-button>
+                <ion-button id="deletePaciente" color="danger" (click)="deletePaciente(item)">Eliminar</ion-button>
+            </div>
+        </ion-item>
+    </ion-list>
+</div>
+</ion-content>

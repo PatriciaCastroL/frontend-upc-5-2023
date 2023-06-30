@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      CRUD Cita
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input id="idCita" type="text" hidden [(ngModel)]="idCita"></ion-input>
+    <ion-input id="motivo" type="text" placeholder="Ingrese Motivo" [(ngModel)]="motivo"></ion-input>
+    <ion-input id="fechahora" type="text" placeholder="Ingrese fecha y hora" [(ngModel)]="fechahora"></ion-input>
+    <ion-input id="idPaciente" type="text" placeholder="Ingrese ID Paciente" [(ngModel)]="idPaciente"></ion-input>
+    <div class="item-note" item-end>
+        <ion-button id="addCita" *ngIf="!swGuardarCambios" (click)="addCita()">Agregar Cita</ion-button>
+        <ion-button id="guardarCambios" *ngIf="swGuardarCambios" color="warning" (click)="guardarCambios()">Guardar Cambios</ion-button>
+    </div>
+</ion-item>
+<div padding>
+    <ion-list>
+        <ion-item *ngFor="let item of listCita">
+          ID= {{item.id}} Motivo= {{item.motivo}} - FechaHora= {{item.fechaHora}} - IDPaciente= {{item.idPaciente}}
+            <div class="item-note" slot="end">
+                <ion-button id="updateCita" color="warning" (click)="updateCita(item)">Editar</ion-button>
+                <ion-button id="deleteCita" color="danger" (click)="deleteCita(item)">Eliminar</ion-button>
+            </div>
+        </ion-item>
+    </ion-list>
+</div>
+
+</ion-content>

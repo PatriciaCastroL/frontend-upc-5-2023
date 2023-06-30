@@ -74,7 +74,7 @@ export class Tab1Page {
                 next: (response: HttpResponse<any>) => {
                     console.log(response.body)//1
                     if(response.body == 1){
-                        alert("Se modifico la categoria con exito :)");
+                        alert("Se modificó la categoria con exito :)");
                         this.GetCategoria();//Se actualize el listado
                         this.idCategoria = "";
                         this.nombreCategoria = "";
@@ -105,10 +105,10 @@ export class Tab1Page {
             next: (response: HttpResponse<any>) => {
                 console.log(response.body)//1
                 if(response.body == 1){
-                    alert("Se elimino la categoria con exito :)");
+                    alert("Se elimino la categoria con éxito :)");
                     this.GetCategoria();//Se actualize el listado
                 }else{
-                    alert("Al eliminar la categoria fallo exito :(");
+                    alert("Al eliminar la categoria fallo éxito :(");
                 }
             },
             error: (error: any) => {
